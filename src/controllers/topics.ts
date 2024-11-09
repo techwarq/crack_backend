@@ -30,8 +30,12 @@ export const postTopics = async (req: AuthRequest, res: Response): Promise<void>
       data: {
         title: title.trim(),
         description: description?.trim(), // Optional in schema
-        goalId: goalId,     // Required in schema
-        userId: req.user.id // Optional in schema
+        goal: {
+          connect: { id: goalId }, // Connect the topic to an existing goal by its ID
+        },
+        user: {
+          connect: { id: req.user.id }, // Connect the topic to the currently authenticated user
+        },// Optional in schema
       },
       include: {
         goal: true,

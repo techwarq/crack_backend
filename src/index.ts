@@ -26,7 +26,7 @@ app.get('/', (req, res) =>{
 });
 
 app.use(authMiddleware)
-const port = process.env.PORT || 4002;
+const port = process.env.PORT || 4005;
  
 app.listen(port , () => {
     console.log(`srevr running on port ${port}`)

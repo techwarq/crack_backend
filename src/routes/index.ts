@@ -10,5 +10,6 @@ const rootRouter: Router = Router()
 rootRouter.use('/auth', authroutes)
 rootRouter.use('/me', authMiddleware, goalRoutes);
 rootRouter.use('/me/goals/:goalId', authMiddleware, topicRoutes)
+rootRouter.use('/me/goals/:goalId/topics/:topicsId', authMiddleware, topicRoutes)
 
 export default rootRouter;
