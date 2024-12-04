@@ -11,8 +11,8 @@ export const addTodoItem = async (req: AuthRequest, res: Response): Promise<void
       res.status(401).json({ error: "Unauthorized" });
       return;
     }
-
-    const { title, todoListId } = req.body;
+    const { todoListId } = req.params;
+    const { title } = req.body;
 
     if (!title?.trim() || !todoListId) {
       res.status(400).json({ error: "Title and TodoList ID are required" });

@@ -11,8 +11,13 @@ export const createTodoList = async (req: AuthRequest, res: Response): Promise<v
       res.status(401).json({ error: "Unauthorized" });
       return;
     }
+    console.log('Full params:', req.params);
+     console.log('Full body:', req.body);
 
-    const { title, description, topicId } = req.body;
+     const { goalId, topicId } = req.params;
+    
+
+    const { title, description } = req.body;
 
     if (!title?.trim() || !topicId) {
       res.status(400).json({ error: "Title and Topic ID are required" });
@@ -23,7 +28,7 @@ export const createTodoList = async (req: AuthRequest, res: Response): Promise<v
       data: {
         title: title.trim(),
         description: description?.trim(),
-        topic: { connect: { id: topicId } },
+        topic: { connect: { id: req.params.topicId } },
         user: { connect: { id: req.user.id } },
       },
     });
@@ -46,7 +51,7 @@ export const getTodoLists = async (req: AuthRequest, res: Response): Promise<voi
       return;
     }
 
-    const { topicId } = req.params;
+    const {topicId } = req.params;
 
     if (!topicId) {
       res.status(400).json({ error: "Topic ID is required" });

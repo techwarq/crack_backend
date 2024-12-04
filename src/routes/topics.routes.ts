@@ -6,6 +6,6 @@ import { getTopic, postTopics } from '../controllers/topics';
 const topicRoutes : Router = Router({ mergeParams: true });
 
 topicRoutes.post('/topics',authMiddleware,postTopics);
-topicRoutes.get('/topics', authMiddleware,getTopic )
+topicRoutes.get('/topics/:topicId', authMiddleware,getTopic )
 
 export default topicRoutes;
